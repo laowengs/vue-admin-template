@@ -36,7 +36,17 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    // 通过proxy向后端请求，解决跨域问题
+    proxy: {
+      '/vue': {
+        target: `http://127.0.0.1:9005/`,
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/vue': ''
+        }
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
