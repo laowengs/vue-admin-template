@@ -38,7 +38,13 @@ router.beforeEach(async(to, from, next) => {
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')
-          Message.error(error || 'Has Error')
+          console.log('err' + error)
+          Message({
+            // 如果error是new error() 构造，需要使用error.message
+            message: error || 'has error',
+            type: 'error',
+            duration: 5 * 1000
+          })
           next(`/login?redirect=${to.path}`)
           NProgress.done()
         }
