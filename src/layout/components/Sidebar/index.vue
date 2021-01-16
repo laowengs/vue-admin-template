@@ -23,6 +23,7 @@ import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
+import { getMenuInfo } from '@/api/menu'
 
 export default {
   components: { SidebarItem, Logo },
@@ -30,9 +31,14 @@ export default {
     ...mapGetters([
       'sidebar'
     ]),
-    routes() {
-      return this.$router.options.routes
-    },
+    // routes: {
+    //   get() {
+    //     return this.getMenuInfoList()
+    //   },
+    //   set() {
+    //     return this.getMenuInfoList()
+    //   }
+    // },
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
@@ -50,6 +56,40 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened
+    }
+  },
+  mounted() {
+    this.getMenuInfoList()
+  },
+  data() {
+    return {
+      routes: null
+    }
+  },
+  methods: {
+    getMenuInfoList() {
+      const menuRoutes = []
+      this.loading = true
+      getMenuInfo().then(response => {
+        const menuList = response.data
+        const routeConfigs = this.$router.options.routes
+        const mss = routeConfigs.filter(item => {
+          return item.path === '/'
+        })
+        if (mss && mss.length > 0) {
+          menuRoutes.push(mss[0])
+        }
+        menuList.forEach(menu => {
+          const mss = routeConfigs.filter(item => {
+            return menu.menuId === item.meta.menuId
+          })
+          if (mss && mss.length > 0) {
+            menuRoutes.push(mss[0])
+          }
+        })
+        this.loading = false
+        this.routes = menuRoutes
+      })
     }
   }
 }
