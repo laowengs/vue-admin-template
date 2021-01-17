@@ -35,27 +35,28 @@ export const constantRoutes = [
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true,
-    meta: { menuId: 0 }
+    meta: { menuId: -1 }
   },
 
   {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true,
-    meta: { menuId: 0 }
+    meta: { menuId: -1 }
   },
 
   {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
+    name: 'Dashboard',
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }],
-    meta: { menuId: 0 }
+    meta: { title: 'Dashboard', icon: 'dashboard', menuId: 0 }
   },
 
   {
@@ -81,17 +82,18 @@ export const constantRoutes = [
   },
 
   {
-    path: '/form/form',
+    path: '/form',
     component: Layout,
+    name: 'Form',
     children: [
       {
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form', menuId: 2 }
+        meta: { title: 'insert', icon: 'form', menuId: 21 }
       }
     ],
-    meta: { menuId: 2 }
+    meta: { title: 'Form', icon: 'form', menuId: 2 }
   },
 
   {
@@ -155,22 +157,22 @@ export const constantRoutes = [
   },
 
   {
-    path: 'external-link',
+    path: '/external-link',
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link', menuId: 4 }
+        path: 'https://www.baidu.com/',
+        meta: { title: 'baidu', menuId: 41 }
       }
     ],
-    meta: { menuId: 0 }
+    meta: { title: 'External Link', icon: 'link', menuId: 4 }
   },
 
   // 404 page must be placed at the end !!!
   { path: '*',
     redirect: '/404',
     hidden: true,
-    meta: { menuId: '0' }
+    meta: { menuId: '-1' }
   }
 ]
 

@@ -73,24 +73,35 @@ export default {
       getMenuInfo().then(response => {
         const menuList = response.data
         const routeConfigs = this.$router.options.routes
-        const mss = routeConfigs.filter(item => {
-          return item.path === '/'
-        })
-        if (mss && mss.length > 0) {
-          menuRoutes.push(mss[0])
-        }
-        menuList.forEach(menu => {
-          const mss = routeConfigs.filter(item => {
-            return menu.menuId === item.meta.menuId
-          })
-          if (mss && mss.length > 0) {
-            menuRoutes.push(mss[0])
-          }
-        })
+        dealMenu(menuRoutes, menuList, routeConfigs)
+        console.log(menuRoutes)
         this.loading = false
         this.routes = menuRoutes
       })
     }
   }
+}
+function dealMenu(menuRoutes, menuList, routeConfigs) {
+  menuList.forEach(menu => {
+    const mss = routeConfigs.filter(item => {
+      return menu.menuId === item.meta.menuId
+    })
+    // 父级菜单
+    if (mss && mss.length > 0) {
+      console.log('处理菜单', mss[0].meta.menuId, mss)
+      const childrenMenuRoutes = []
+      // 子级菜单
+      const routerChildren = mss[0].children
+      if (routerChildren && routerChildren.length > 0) {
+        const childrenMenuList = menu.childrenMenuList
+        if (childrenMenuList && childrenMenuList.length > 0) {
+          dealMenu(childrenMenuRoutes, childrenMenuList, routerChildren)
+          console.log('子菜单', childrenMenuRoutes)
+        }
+      }
+      mss[0].children = childrenMenuRoutes
+      menuRoutes.push(mss[0])
+    }
+  })
 }
 </script>
