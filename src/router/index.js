@@ -167,6 +167,19 @@ export const constantRoutes = [
     ],
     meta: { title: 'External Link', icon: 'link', menuId: 4 }
   },
+  {
+    path: '/docker',
+    component: Layout,
+    redirect: '/docker/terminal',
+    name: 'Docker',
+    children: [{
+      path: 'terminal',
+      name: 'Terminal',
+      component: () => import('@/views/docker/terminal/index'),
+      meta: { title: 'Terminal', icon: 'terminal' }
+    }],
+    meta: { title: 'Terminal', icon: 'dashboard', menuId: 5 }
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*',
