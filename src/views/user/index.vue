@@ -1,6 +1,8 @@
 <template>
   <div class="app-container">
+    <el-input v-model="filterText" placeholder="Filter keyword" style="margin-bottom:30px;" />
     <el-table
+      ref="user_table"
       v-loading="listLoading"
       :data="list"
       element-loading-text="Loading"
@@ -8,24 +10,34 @@
       fit
       highlight-current-row
     >
-      <el-table-column align="center" label="ID" width="95">
+<!--      <el-user-column align="center" label="ID" width="95">-->
+<!--        <template slot-scope="scope">-->
+<!--          {{ scope.$index }}-->
+<!--        </template>-->
+<!--      </el-user-column>-->
+      <el-table-column label="ID" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          {{ scope.row.userId }}
         </template>
       </el-table-column>
-      <el-table-column label="Title">
+      <el-table-column label="Username" align="center">
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          <span>{{ scope.row.username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
+      <el-table-column label="Password" width="110" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          {{ scope.row.password }}
         </template>
       </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
+      <el-table-column label="Create_date" width="240" align="center">
         <template slot-scope="scope">
-          {{ scope.row.pageviews }}
+          {{ scope.row.createDate }}
+        </template>
+      </el-table-column>
+      <el-table-column label="Status_date" width="240" align="center">
+        <template slot-scope="scope">
+          {{ scope.row.statusDate }}
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="Status" width="110" align="center">
@@ -59,6 +71,7 @@ export default {
   },
   data() {
     return {
+      filterText: '',
       list: null,
       listLoading: true
     }
@@ -70,7 +83,7 @@ export default {
     fetchData() {
       this.listLoading = true
       getList().then(response => {
-        this.list = response.data.items
+        this.list = response.data
         this.listLoading = false
       })
     }

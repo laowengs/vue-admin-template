@@ -56,27 +56,27 @@ export const constantRoutes = [
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }],
-    meta: { title: 'Dashboard', icon: 'dashboard', menuId: 0 }
+    meta: { title: 'Dashboard', icon: 'dashboard', menuId: 9 }
   },
 
   {
-    path: '/example',
+    path: '/user',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help', menuId: 1 },
+    redirect: '/user/user',
+    name: '用户管理',
+    meta: { title: '用户管理', icon: 'el-icon-s-help', menuId: 2 },
     children: [
       {
         path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table', menuId: 11 }
+        name: '用户列表',
+        component: () => import('@/views/user/index'),
+        meta: { title: '用户列表', icon: 'table', menuId: 3 }
       },
       {
         path: 'tree',
-        name: 'Tree',
+        name: '权限控制',
         component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree', menuId: 12 }
+        meta: { title: '权限控制', icon: 'tree', menuId: 4 }
       }
     ]
   },
@@ -90,10 +90,10 @@ export const constantRoutes = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'insert', icon: 'form', menuId: 21 }
+        meta: { title: 'insert', icon: 'form', menuId: 6 }
       }
     ],
-    meta: { title: 'Form', icon: 'form', menuId: 2 }
+    meta: { title: 'Form', icon: 'form', menuId: 5 }
   },
 
   {
@@ -104,38 +104,38 @@ export const constantRoutes = [
     meta: {
       title: 'Nested',
       icon: 'nested',
-      menuId: 3
+      menuId: 7
     },
     children: [
       {
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
-        meta: { title: 'Menu1', menuId: 31 },
+        meta: { title: 'Menu1', menuId: 8 },
         children: [
           {
             path: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1'),
             name: 'Menu1-1',
-            meta: { title: 'Menu1-1', menuId: 311 }
+            meta: { title: 'Menu1-1', menuId: 10 }
           },
           {
             path: 'menu1-2',
             component: () => import('@/views/nested/menu1/menu1-2'),
             name: 'Menu1-2',
-            meta: { title: 'Menu1-2', menuId: 312 },
+            meta: { title: 'Menu1-2', menuId: 11 },
             children: [
               {
                 path: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                 name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1', menuId: 3121 }
+                meta: { title: 'Menu1-2-1', menuId: 12 }
               },
               {
                 path: 'menu1-2-2',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                 name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2', menuId: 3122 }
+                meta: { title: 'Menu1-2-2', menuId: 13 }
               }
             ]
           },
@@ -143,7 +143,7 @@ export const constantRoutes = [
             path: 'menu1-3',
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
-            meta: { title: 'Menu1-3', menuId: 313 }
+            meta: { title: 'Menu1-3', menuId: 14 }
           }
         ]
       },
@@ -151,7 +151,7 @@ export const constantRoutes = [
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
         name: 'Menu2',
-        meta: { title: 'menu2', menuId: 32 }
+        meta: { title: 'menu2', menuId: 15 }
       }
     ]
   },
@@ -162,10 +162,10 @@ export const constantRoutes = [
     children: [
       {
         path: 'https://www.baidu.com/',
-        meta: { title: 'baidu', menuId: 41 }
+        meta: { title: 'baidu', menuId: 19 }
       }
     ],
-    meta: { title: 'External Link', icon: 'link', menuId: 4 }
+    meta: { title: 'External Link', icon: 'link', menuId: 16 }
   },
   {
     path: '/docker',
@@ -176,9 +176,9 @@ export const constantRoutes = [
       path: 'terminal',
       name: 'Terminal',
       component: () => import('@/views/docker/terminal/index'),
-      meta: { title: 'Terminal', icon: 'terminal' }
+      meta: { title: 'Terminal', icon: 'dashboard', menuId: 18 }
     }],
-    meta: { title: 'Terminal', icon: 'dashboard', menuId: 5 }
+    meta: { title: 'Docker', icon: 'dashboard', menuId: 17 }
   },
 
   // 404 page must be placed at the end !!!
