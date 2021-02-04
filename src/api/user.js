@@ -22,3 +22,11 @@ export function logout() {
     method: 'get'
   })
 }
+
+export function getList(params) {
+  return request({
+    url: '/vue/user/list',
+    method: 'get',
+    params
+  })
+}

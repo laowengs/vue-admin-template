@@ -74,7 +74,7 @@ export default {
         const menuList = response.data
         const routeConfigs = this.$router.options.routes
         dealMenu(menuRoutes, menuList, routeConfigs)
-        console.log(menuRoutes)
+        // console.log(menuRoutes)
         this.loading = false
         this.routes = menuRoutes
       })
@@ -88,7 +88,7 @@ function dealMenu(menuRoutes, menuList, routeConfigs) {
     })
     // 父级菜单
     if (mss && mss.length > 0) {
-      console.log('处理菜单', mss[0].meta.menuId, mss)
+      // console.log('处理菜单', mss[0].meta.menuId, mss)
       const childrenMenuRoutes = []
       // 子级菜单
       const routerChildren = mss[0].children
@@ -96,7 +96,7 @@ function dealMenu(menuRoutes, menuList, routeConfigs) {
         const childrenMenuList = menu.childrenMenuList
         if (childrenMenuList && childrenMenuList.length > 0) {
           dealMenu(childrenMenuRoutes, childrenMenuList, routerChildren)
-          console.log('子菜单', childrenMenuRoutes)
+          // console.log('子菜单', childrenMenuRoutes)
         }
       }
       mss[0].children = childrenMenuRoutes

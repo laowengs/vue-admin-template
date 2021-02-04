@@ -7,3 +7,10 @@ export function getMenuInfo(data) {
     data
   })
 }
+export function getAllMenuInfo(data) {
+  return request({
+    url: '/vue/menu/getAllMenuInfo',
+    method: 'get',
+    data
+  })
+}

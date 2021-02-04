@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getList } from '@/api/user'
 
 export default {
   filters: {
