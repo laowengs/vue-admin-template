@@ -1,23 +1,8 @@
 <template>
   <div class="app-container">
-<!--    <el-input v-model="filterText" placeholder="Filter keyword" style="margin-bottom:30px;" />-->
-
-<!--    <el-tree-->
-<!--      ref="tree2"-->
-<!--      :data="menuList"-->
-<!--      show-checkbox-->
-<!--      node-key="id"-->
-<!--      :default-checked-keys="checkedIdList"-->
-<!--      :props="defaultProps"-->
-<!--      :filter-node-method="filterNode"-->
-<!--      class="filter-tree"-->
-<!--      default-expand-all-->
-<!--      @check-change="checkChange"-->
-<!--    />-->
-
     <el-row :gutter="40">
       <el-col :span="8">
-        <el-input v-model="filterText" placeholder="输入菜单名称" style="margin-bottom:30px;" />
+        <el-input v-model="filterText" placeholder="输入菜单名称" style="margin-bottom:30px;"/>
         <el-tree
           ref="tree2"
           :data="menuList"
@@ -28,8 +13,30 @@
           :filter-node-method="filterNode"
           class="filter-tree"
           default-expand-all
+          :expand-on-click-node="false"
           @check="checkChange"
-        />
+        >
+<!--          扩展tree-->
+          <span class="custom-tree-node" slot-scope="{ node, data }">
+            <span>{{ node.label }}</span>
+            <span>
+              <el-button
+                type="text"
+                size="mini"
+                @click="() => append(data)"
+              >
+                Append
+              </el-button>
+              <el-button
+                type="text"
+                size="mini"
+                @click="() => remove(node, data)"
+              >
+                Delete
+              </el-button>
+            </span>
+          </span>
+        </el-tree>
       </el-col>
       <el-col :span="15">
         <h3>操作</h3>
@@ -42,8 +49,9 @@
           <el-tag
             v-for="menu in addMenuList"
             :key="menu.menuId"
-            closable >
-            {{menu.menuName}}
+            closable
+          >
+            {{ menu.menuName }}
           </el-tag>
         </el-row>
         <h3>删除权限</h3>
@@ -52,8 +60,9 @@
             v-for="menu in removeMenuList"
             :key="menu.menuId"
             type="danger"
-            closable >
-            {{menu.menuName}}
+            closable
+          >
+            {{ menu.menuName }}
           </el-tag>
         </el-row>
       </el-col>
@@ -194,7 +203,8 @@ export default {
       console.log('新增的权限点:', addMenuId)
       return { addMenuId: addMenuId, deleteMenuId: deleteMenuId }
     },
-    commit() {},
+    commit() {
+    },
     dealMenu(menuInfo, checkId, menuInfoList) {
       const menuInfoTree = []
       if (menuInfo) {
@@ -217,6 +227,20 @@ export default {
         }
       }
       return menuInfoTree
+    },
+    append(data) {
+      const newChild = { id: 1, label: 'testtest', children: [] }
+      if (!data.children) {
+        this.$set(data, 'children', [])
+      }
+      data.children.push(newChild)
+    },
+
+    remove(node, data) {
+      const parent = node.parent
+      const children = parent.data.children || parent.data
+      const index = children.findIndex(d => d.id === data.id)
+      children.splice(index, 1)
     }
   }
 }
@@ -224,8 +248,16 @@ export default {
 </script>
 
 <style scoped>
-.el-tag{
+.el-tag {
   margin-bottom: 20px;
   margin-left: 20px;
+}
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-right: 8px;
 }
 </style>

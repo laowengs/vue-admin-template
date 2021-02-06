@@ -49,34 +49,40 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    name: 'Dashboard',
+    name: '首页',
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'dashboard' }
     }],
-    meta: { title: 'Dashboard', icon: 'dashboard', menuId: 9 }
+    meta: { title: '首页', icon: 'dashboard', menuId: 9 }
   },
 
   {
     path: '/user',
     component: Layout,
     redirect: '/user/user',
-    name: '用户管理',
-    meta: { title: '用户管理', icon: 'el-icon-s-help', menuId: 2 },
+    name: '用户',
+    meta: { title: '用户', icon: 'el-icon-s-help', menuId: 2 },
     children: [
       {
         path: 'table',
-        name: '用户列表',
+        name: '用户管理',
         component: () => import('@/views/user/index'),
-        meta: { title: '用户列表', icon: 'table', menuId: 3 }
+        meta: { title: '用户管理', icon: 'table', menuId: 3 }
       },
       {
         path: 'tree',
-        name: '权限控制',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '权限控制', icon: 'tree', menuId: 4 }
+        name: '权限管理',
+        component: () => import('@/views/user/menuTree'),
+        meta: { title: '权限管理', icon: 'tree', menuId: 4 }
+      },
+      {
+        path: 'role',
+        name: '角色管理',
+        component: () => import('@/views/user/userRole'),
+        meta: { title: '角色管理', icon: 'tree', menuId: 23 }
       }
     ]
   },
@@ -84,7 +90,7 @@ export const constantRoutes = [
   {
     path: '/form',
     component: Layout,
-    name: 'Form',
+    name: 'ElstaticSearch',
     children: [
       {
         path: 'index',
@@ -93,16 +99,16 @@ export const constantRoutes = [
         meta: { title: 'insert', icon: 'form', menuId: 6 }
       }
     ],
-    meta: { title: 'Form', icon: 'form', menuId: 5 }
+    meta: { title: 'ElstaticSearch', icon: 'form', menuId: 5 }
   },
 
   {
-    path: '/nested',
+    path: '/cicd',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
+    redirect: '/cicd/menu1',
+    name: 'CI/CD',
     meta: {
-      title: 'Nested',
+      title: 'CI/CD',
       icon: 'nested',
       menuId: 7
     },
@@ -161,24 +167,79 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'https://www.baidu.com/',
-        meta: { title: 'baidu', menuId: 19 }
+        path: 'https://www.yuque.com/laowengs/learn',
+        meta: { title: '个人博客', menuId: 19 }
       }
     ],
-    meta: { title: 'External Link', icon: 'link', menuId: 16 }
+    meta: { title: '外链', icon: 'link', menuId: 16 }
   },
   {
     path: '/docker',
     component: Layout,
     redirect: '/docker/terminal',
-    name: 'Docker',
+    name: '容器管理',
     children: [{
       path: 'terminal',
       name: 'Terminal',
       component: () => import('@/views/docker/terminal/index'),
       meta: { title: 'Terminal', icon: 'dashboard', menuId: 18 }
     }],
-    meta: { title: 'Docker', icon: 'dashboard', menuId: 17 }
+    meta: { title: '容器管理', icon: 'dashboard', menuId: 17 }
+  },
+
+  {
+    path: '/dispatch',
+    component: Layout,
+    redirect: '/dispatch/dispatch',
+    name: '调度管理',
+    meta: { title: '调度管理', icon: 'el-icon-s-help', menuId: 21 },
+    children: [
+      {
+        path: 'node',
+        name: '节点列表',
+        component: () => import('@/views/dispatch/index'),
+        meta: { title: '节点列表', icon: 'table', menuId: 22 }
+      },
+      {
+        path: 'schedule',
+        name: '定时任务',
+        component: () => import('@/views/dispatch/index'),
+        meta: { title: '定时任务', icon: 'table', menuId: 29 }
+      }
+    ]
+  },
+  {
+    path: '/microservice',
+    component: Layout,
+    redirect: '/microservice/microservice',
+    name: '微服务',
+    meta: { title: '微服务', icon: 'el-icon-s-help', menuId: 24 },
+    children: [
+      {
+        path: 'register',
+        name: '注册中心',
+        component: () => import('@/views/dispatch/index'),
+        meta: { title: '注册中心', icon: 'table', menuId: 25 }
+      },
+      {
+        path: 'router',
+        name: '服务路由',
+        component: () => import('@/views/dispatch/index'),
+        meta: { title: '服务路由', icon: 'table', menuId: 26 }
+      },
+      {
+        path: 'config',
+        name: '配置中心',
+        component: () => import('@/views/dispatch/index'),
+        meta: { title: '配置中心', icon: 'table', menuId: 27 }
+      },
+      {
+        path: 'level',
+        name: '服务降级',
+        component: () => import('@/views/dispatch/index'),
+        meta: { title: '服务降级', icon: 'table', menuId: 28 }
+      }
+    ]
   },
 
   // 404 page must be placed at the end !!!
