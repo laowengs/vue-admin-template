@@ -64,7 +64,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/user/user',
     name: '用户',
-    meta: { title: '用户', icon: 'el-icon-s-help', menuId: 2 },
+    meta: { title: '用户', icon: 'el-icon-user', menuId: 2 },
     children: [
       {
         path: 'table',
@@ -76,13 +76,13 @@ export const constantRoutes = [
         path: 'tree',
         name: '权限管理',
         component: () => import('@/views/user/menuTree'),
-        meta: { title: '权限管理', icon: 'tree', menuId: 4 }
+        meta: { title: '权限管理', icon: 'el-icon-menu', menuId: 4 }
       },
       {
         path: 'role',
         name: '角色管理',
         component: () => import('@/views/user/userRole'),
-        meta: { title: '角色管理', icon: 'tree', menuId: 23 }
+        meta: { title: '角色管理', icon: 'table', menuId: 23 }
       }
     ]
   },
@@ -182,9 +182,9 @@ export const constantRoutes = [
       path: 'terminal',
       name: 'Terminal',
       component: () => import('@/views/docker/terminal/index'),
-      meta: { title: 'Terminal', icon: 'dashboard', menuId: 18 }
+      meta: { title: 'Terminal', icon: 'el-icon-monitor', menuId: 18 }
     }],
-    meta: { title: '容器管理', icon: 'dashboard', menuId: 17 }
+    meta: { title: '容器管理', icon: 'el-icon-dessert', menuId: 17 }
   },
 
   {
@@ -192,19 +192,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/dispatch/dispatch',
     name: '调度管理',
-    meta: { title: '调度管理', icon: 'el-icon-s-help', menuId: 21 },
+    meta: { title: '调度管理', icon: 'el-icon-position', menuId: 21 },
     children: [
       {
         path: 'node',
         name: '节点列表',
         component: () => import('@/views/dispatch/index'),
-        meta: { title: '节点列表', icon: 'table', menuId: 22 }
+        meta: { title: '节点列表', icon: 'el-icon-s-platform', menuId: 22 }
       },
       {
         path: 'schedule',
         name: '定时任务',
         component: () => import('@/views/dispatch/index'),
-        meta: { title: '定时任务', icon: 'table', menuId: 29 }
+        meta: { title: '定时任务', icon: 'el-icon-timer', menuId: 29 }
       }
     ]
   },
@@ -213,31 +213,31 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/microservice/microservice',
     name: '微服务',
-    meta: { title: '微服务', icon: 'el-icon-s-help', menuId: 24 },
+    meta: { title: '微服务', icon: 'el-icon-cloudy', menuId: 24 },
     children: [
       {
         path: 'register',
         name: '注册中心',
         component: () => import('@/views/dispatch/index'),
-        meta: { title: '注册中心', icon: 'table', menuId: 25 }
+        meta: { title: '注册中心', icon: 'el-icon-files', menuId: 25 }
       },
       {
         path: 'router',
         name: '服务路由',
         component: () => import('@/views/dispatch/index'),
-        meta: { title: '服务路由', icon: 'table', menuId: 26 }
+        meta: { title: '服务路由', icon: 'el-icon-rank', menuId: 26 }
       },
       {
         path: 'config',
         name: '配置中心',
         component: () => import('@/views/dispatch/index'),
-        meta: { title: '配置中心', icon: 'table', menuId: 27 }
+        meta: { title: '配置中心', icon: 'el-icon-document', menuId: 27 }
       },
       {
         path: 'level',
         name: '服务降级',
         component: () => import('@/views/dispatch/index'),
-        meta: { title: '服务降级', icon: 'table', menuId: 28 }
+        meta: { title: '服务降级', icon: 'el-icon-s-flag', menuId: 28 }
       }
     ]
   },
