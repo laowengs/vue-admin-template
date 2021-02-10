@@ -25,8 +25,16 @@ export function logout() {
 
 export function getList(params) {
   return request({
-    url: '/vue/user/list',
+    url: '/vue/user',
     method: 'get',
     params
+  })
+}
+
+export function addUser(data) {
+  return request({
+    url: '/vue/user',
+    method: 'put',
+    data: data
   })
 }
