@@ -20,19 +20,26 @@
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }}</span>
             <span>
+               <el-button
+                 type="text"
+                 size="mini"
+                 @click="() => appendSameLevel(node, data)"
+               >
+                +同级
+              </el-button>
               <el-button
                 type="text"
                 size="mini"
                 @click="() => append(data)"
               >
-                Append
+                +子级
               </el-button>
               <el-button
                 type="text"
                 size="mini"
                 @click="() => remove(node, data)"
               >
-                Delete
+                -删除
               </el-button>
             </span>
           </span>
@@ -235,7 +242,12 @@ export default {
       }
       data.children.push(newChild)
     },
-
+    appendSameLevel(node, data) {
+      const newChild = { id: 1, label: 'testtest', children: [] }
+      const parent = node.parent
+      const children = parent.data.children || parent.data
+      children.push(newChild)
+    },
     remove(node, data) {
       const parent = node.parent
       const children = parent.data.children || parent.data

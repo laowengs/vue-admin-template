@@ -13,7 +13,7 @@ export default {
   props: {
     socketURI: {
       type: String,
-      default: 'ws://localhost:19090/ws/container/exec?width=100&height=50&ip=134.175.56.208&containerId=21197d7a791b5c8193f244fd410498df599fe79ddef219d926be9547f270c2bf'
+      default: 'ws://localhost:19090/ws/container/exec?width=100&height=50&ip=wengjp.local&containerId=ff396f9afe641aa521ccc93606363d0c60e5019422345653e5ab17cca8b6f4b8'
     }
   },
   mounted() {

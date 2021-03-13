@@ -183,6 +183,16 @@ export const constantRoutes = [
       name: 'Terminal',
       component: () => import('@/views/docker/terminal/index'),
       meta: { title: 'Terminal', icon: 'el-icon-monitor', menuId: 18 }
+    }, {
+      path: 'images',
+      name: 'Images',
+      component: () => import('@/views/docker/image/index'),
+      meta: { title: 'Images', icon: 'el-icon-monitor', menuId: 30 }
+    }, {
+      path: 'containers',
+      name: 'Containers',
+      component: () => import('@/views/docker/container/index'),
+      meta: { title: 'Containers', icon: 'el-icon-monitor', menuId: 31 }
     }],
     meta: { title: '容器管理', icon: 'el-icon-dessert', menuId: 17 }
   },
