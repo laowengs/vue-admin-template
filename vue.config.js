@@ -39,7 +39,7 @@ module.exports = {
     // 通过proxy向后端请求，解决跨域问题
     proxy: {
       '/vue': {
-        target: `http://127.0.0.1:9005/`,
+        target: `http://wengjp.local:9005/`,
         ws: true,
         changeOrigin: true,
         pathRewrite: {
